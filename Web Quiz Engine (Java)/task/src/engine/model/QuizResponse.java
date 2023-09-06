@@ -1,0 +1,35 @@
+package engine.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+public class QuizResponse {
+    private boolean success;
+    private String feedback;
+
+    public QuizResponse() {
+    }
+
+    public QuizResponse(boolean success, String feedback) {
+        this.success = success;
+        this.feedback = feedback;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
+}
