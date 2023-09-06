@@ -46,9 +46,6 @@ public class User {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getPassword() {
         return password;
@@ -62,18 +59,7 @@ public class User {
         return quizCompletionResponses;
     }
 
-    public void setQuizCompletionResponses(List<QuizCompletionResponse> quizCompletionResponses) {
-        this.quizCompletionResponses = quizCompletionResponses;
-    }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", quizList=" + quizList +
-                ", quizCompletionResponses=" + quizCompletionResponses +
-                '}';
-    }
+
+
 }

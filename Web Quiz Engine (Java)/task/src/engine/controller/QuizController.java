@@ -1,7 +1,10 @@
 package engine.controller;
 
-import engine.model.*;
-import engine.services.UserServices;
+import engine.model.AnswerRequest;
+import engine.model.Quiz;
+import engine.model.QuizCompletionResponse;
+import engine.model.QuizResponse;
+import engine.services.QuizServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -9,9 +12,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import engine.services.QuizServices;
-
-import java.util.List;
 
 @RestController
 public class QuizController {
@@ -30,26 +30,22 @@ public class QuizController {
 
     @PostMapping("/api/quizzes/{id}/solve")
     public ResponseEntity<QuizResponse> quizResult(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long id, @RequestBody AnswerRequest answer) {
-        System.out.println("Enter POST METHOD WITH ID SOLVE");
-        return quizServices.quizResult(userDetails, id, answer);
+                return quizServices.quizResult(userDetails, id, answer);
     }
 
     @GetMapping("/api/quizzes/{id}")
     public ResponseEntity<Quiz> getQuiz(@PathVariable Long id) {
-        System.out.println("Enter in GetMapping of specific id");
-        return quizServices.getQuiz(id);
+                return quizServices.getQuiz(id);
     }
 
     @GetMapping("/api/quizzes")
     public ResponseEntity<Page<Quiz>> getQuizList(@RequestParam int page) {
-        System.out.println("Enter in GetMapping List");
-        return quizServices.getQuizList(page);
+                return quizServices.getQuizList(page);
     }
 
     @GetMapping("/api/quizzes/completed")
     public ResponseEntity<Page<QuizCompletionResponse>> getQuizCompletionList(@AuthenticationPrincipal UserDetails userDetails, @RequestParam int page) {
-        System.out.println("Enter in Quiz CompletionList");
-        return quizServices.getQuizCompletionList(userDetails, page);
+                return quizServices.getQuizCompletionList(userDetails, page);
     }
     @DeleteMapping("/api/quizzes/{id}")
     public ResponseEntity<?> deleteUser(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long id) {
