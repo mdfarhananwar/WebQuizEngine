@@ -107,14 +107,14 @@ public class Quiz {
         this.user = user;
     }
 
-    @Override
-    public String toString() {
-        return "Quiz{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", text='" + text + '\'' +
-                ", options=" + options +
-                ", answer=" + answer +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Quiz{" +
+//                "id=" + id +
+//                ", title='" + title + '\'' +
+//                ", text='" + text + '\'' +
+//                ", options=" + options +
+//                ", answer=" + answer +
+//                '}';
+//    }
 }

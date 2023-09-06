@@ -149,25 +149,15 @@ public class QuizServices {
         return ResponseEntity.noContent().build();
     }
 
-//    public ResponseEntity<Page<QuizCompletionResponse>> getQuizCompletionList(UserDetails userDetails, int page) {
-//        String email = userDetails.getUsername();
-//        User user = userRepository.findByEmailIgnoreCase(email);
-//        Long userId = user.getId();
-////        Pageable pageable = PageRequest.of(page, 10,  Sort.by("completedAt").descending());
-//        Pageable pageable = PageRequest.of(page, 10);
-//        Page<QuizCompletionResponse> byUser = quizCompletionResponseRepository.findAllByUser(user, pageable);
-//        Page<QuizCompletionResponse> quizCompletionResponses = userRepository.
-//                findQuizCompletionResponsesByUserId(userId, pageable);
-//        return ResponseEntity.ok(quizCompletionResponses);
-//    }
-public ResponseEntity<Page<QuizCompletionResponse>> getQuizCompletionList(UserDetails userDetails, int page) {
-    String email = userDetails.getUsername();
-    User user = userRepository.findByEmailIgnoreCase(email);
+    public ResponseEntity<Page<QuizCompletionResponse>> getQuizCompletionList(UserDetails userDetails, int page) {
+        String email = userDetails.getUsername();
+        User user = userRepository.findByEmailIgnoreCase(email);
+        Long userId = user.getId();
+        Pageable pageable = PageRequest.of(page, 10);
+        Page<QuizCompletionResponse> quizCompletionResponses = userRepository.
+                findQuizCompletionResponsesByUserId(userId, pageable);
+        return ResponseEntity.ok(quizCompletionResponses);
+    }
 
-    Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "completedAt"));
-    Page<QuizCompletionResponse> quizCompletionResponses = quizCompletionResponseRepository.findByUserOrderByCompletedAtDesc(user, pageable);
-
-    return ResponseEntity.ok(quizCompletionResponses);
-}
 
 }

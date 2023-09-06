@@ -4,13 +4,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
+@IdClass(QuizCompletionResponse.CompletionResponseKey.class)
 public class QuizCompletionResponse {
 
     @Id
     private Long id;
+
+    @Id
     private LocalDateTime completedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -51,12 +55,19 @@ public class QuizCompletionResponse {
         this.user = user;
     }
 
-    @Override
-    public String toString() {
-        return "QuizCompletionResponse{" +
-                "id=" + id +
-                ", completedAt=" + completedAt +
-                ", user=" + user +
-                '}';
+    // Define a composite key class
+    public static class CompletionResponseKey implements Serializable {
+        private Long id;
+        private LocalDateTime completedAt;
+
+        public CompletionResponseKey() {
+        }
+
+        public CompletionResponseKey(Long id, LocalDateTime completedAt) {
+            this.id = id;
+            this.completedAt = completedAt;
+        }
     }
+
+
 }
